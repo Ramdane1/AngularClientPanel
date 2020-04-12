@@ -1,3 +1,4 @@
+import { environment } from './../environments/environment';
 import { ClientService } from './services/client.service';
 import { AuthClientService } from './services/auth-client.service';
 import { BrowserModule } from '@angular/platform-browser';
@@ -17,6 +18,12 @@ import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 
+import {AngularFireModule} from 'angularfire2';
+import {AngularFirestoreModule} from 'angularfire2/firestore';
+import {AngularFireAuthModule} from 'angularfire2/auth';
+
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -34,7 +41,11 @@ import { NotFoundComponent } from './components/not-found/not-found.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFirestoreModule,
+    AngularFireAuthModule
+
   ],
   providers: [
     ClientService,
