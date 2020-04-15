@@ -1,4 +1,7 @@
+import { ClientService } from './../../services/client.service';
+import { Client } from './../../models/client';
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-add-client',
@@ -7,9 +10,22 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AddClientComponent implements OnInit {
 
-  constructor() { }
+  client: Client = {
+    firstName: "",
+    lastName:"",
+    email:"",
+    phone:null,
+    balance:null
+  }
+
+  constructor(private ClientService: ClientService, private route: Router) { }
 
   ngOnInit() {
+  }
+
+  onSubmit(){
+    this.ClientService.newClient(this.client);
+    return this.route.navigate(['/']);
   }
 
 }
