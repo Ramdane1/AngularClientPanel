@@ -28,7 +28,7 @@
                         <td>{{client.lastName}}</td>
                         <td>{{client.balance | currency:'USD':'symbol'}}</td>
                         <td>
-                            <a href="" class="btn btn-info">
+                            <a routerLink="/client/{{ client.id }}" class="btn btn-info">
                                 <i class="fa fa-info-circle"></i>
                             </a>
                             &nbsp;

@@ -1,1 +1,55 @@
-<p>details-client works!</p>
+<div class="row m-3">
+    <div class="col-md-6">
+        <a routerLink="/" style="color:white">
+            <button class="btn btn-success">
+                
+                    <i class="fa fa-arrow-circle-left dark">
+                        
+                    </i>
+                    Back To Dashboard
+                
+            </button>
+        </a>    
+    </div>
+    <div class="col-md-6">
+        <div class="btn-group pull-right">
+            <button class="btn btn-danger">
+                <i class="fa fa-pencil"></i>
+                Edit
+            </button>
+            <button class="btn btn-dark">
+                <i class="fa fa-trash"></i>
+                Delete
+            </button>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="card">
+            
+            <div class="card-body">
+                <h4 class="card-title">{{client.firstName}} {{client.lastName}}</h4>
+                <div class="row">
+                    <div class="col-md-8">
+                        <ul class="list-group">
+                            <li class="list-group-item">Id : <strong>{{id}}</strong></li>
+                            <li class="list-group-item">Phone : <strong>{{client.phone}}</strong></li>
+                            <li class="list-group-item">Email : <strong>{{client.email}}</strong></li>
+                            
+                        </ul>
+                    </div>
+                    <div class="col-md-4 text-right">
+                        Balance : <h4>{{client.balance | currency:"USD":"symbol"}}</h4>
+
+                        <button class="btn btn-warning">
+                            <i class="fa fa-pencil"></i>
+                            Edit Balance
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
