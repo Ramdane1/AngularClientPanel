@@ -3,6 +3,8 @@ import { ClientService } from './services/client.service';
 import { AuthClientService } from './services/auth-client.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import {FormsModule} from '@angular/forms';
+import {FlashMessagesModule} from 'angular2-flash-messages';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -21,7 +23,7 @@ import { NotFoundComponent } from './components/not-found/not-found.component';
 import {AngularFireModule} from 'angularfire2';
 import {AngularFirestoreModule} from 'angularfire2/firestore';
 import {AngularFireAuthModule} from 'angularfire2/auth';
-import {FormsModule} from '@angular/forms';
+
 
 
 
@@ -46,7 +48,8 @@ import {FormsModule} from '@angular/forms';
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule,
     AngularFireAuthModule,
-    FormsModule
+    FormsModule,
+    FlashMessagesModule.forRoot()
 
   ],
   providers: [
