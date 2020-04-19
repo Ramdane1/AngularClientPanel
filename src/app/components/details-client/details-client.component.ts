@@ -13,6 +13,7 @@ export class DetailsClientComponent implements OnInit {
 
   id: string;
   client: Client;
+  showBalance: boolean = false;
   constructor(private ClientService:ClientService,
              private route: ActivatedRoute,
              private flashMessage: FlashMessagesService) { }
@@ -23,6 +24,13 @@ export class DetailsClientComponent implements OnInit {
       this.client = client;
       console.log(this.client);
     })
+  }
+
+  onSubmit(){
+    this.client.id = this.id;
+    this.ClientService.updateClient(this.client);
+    this.flashMessage.show('Balance Updated !',{cssClass: 'alert alert-warning fade show', timeout: 4000});
+    this.showBalance = false;
   }
   
 

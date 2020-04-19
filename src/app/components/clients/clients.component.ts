@@ -28,4 +28,10 @@ getTotal(){
   }, 0)
 }
 
+/*getTotal(){
+  return this.clients.reduce((total, client) => {
+    return total + parseFloat(client.balance.toString());
+  }, 0)
+}*/
+
 }

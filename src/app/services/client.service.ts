@@ -35,4 +35,9 @@ export class ClientService {
   getClient(id: string): Observable<Client> {
    return this.clientsCollection.doc(id).valueChanges();
   }
+
+  updateClient(client: Client){
+    this.clientDoc = this.clientsCollection.doc(client.id);
+    this.clientDoc.update(client);
+  }
 }

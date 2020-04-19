@@ -41,12 +41,31 @@
                         </ul>
                     </div>
                     <div class="col-md-4 text-right">
-                        Balance : <h4>{{client.balance | currency:"USD":"symbol"}}</h4>
 
-                        <button class="btn btn-warning">
+                        <button class="btn btn-warning" (click)="showBalance = !showBalance">
                             <i class="fa fa-pencil"></i>
                             Edit Balance
                         </button>
+                        <br>
+                      <span class="h5">Balance</span> 
+                      <h4 [ngClass]="{'text-danger': showBalance, 'text-success': !showBalance}">
+                          {{client.balance | currency:"USD":"symbol"}}
+                        </h4>
+
+                        <div *ngIf="showBalance">
+                            <form (submit)="onSubmit()">
+                                <div class="input-group">
+                                    <input type="number" class="form-control" name="balance" [(ngModel)]="client.balance">
+                                    <div class="btn-group">
+                                        <button class="btn btn-success">
+                                            Update
+                                        </button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+
+                        
                     </div>
                 </div>
             </div>
