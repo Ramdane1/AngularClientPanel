@@ -23,7 +23,7 @@
                 </tr>
                 </thead>
                 <tbody>
-                    <tr *ngFor="let client of clients">
+                    <tr *ngFor="let client of clients" (dblclick)="deleteClient(client.id)">
                         <td scope="row">{{client.firstName}}</td>
                         <td>{{client.lastName}}</td>
                         <td>{{client.balance | currency:'USD':'symbol'}}</td>
@@ -36,9 +36,14 @@
                                 <i class="fa fa-pencil" aria-hidden="true"></i>
                             </a>
                             &nbsp;
-                            <a href="" class="btn btn-danger" aria-hidden="true">
+                            <!--<a routerLink="/" class="btn btn-danger" aria-hidden="true" >
                                 <i class="fa fa-trash" aria-hidden="true"></i>
-                            </a>
+                            </a>-->
+                           
+                               <button class="btn btn-dark" (click)="deleteClient(client.id)">
+                                <i class="fa fa-trash"></i>
+                            </button>
+                           
                         </td>
                     </tr>
                     

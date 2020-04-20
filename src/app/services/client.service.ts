@@ -40,4 +40,9 @@ export class ClientService {
     this.clientDoc = this.clientsCollection.doc(client.id);
     this.clientDoc.update(client);
   }
+
+  deleteClient(id: string){
+    this.clientDoc = this.clientsCollection.doc(id);
+    this.clientDoc.delete();
+    }
 }
