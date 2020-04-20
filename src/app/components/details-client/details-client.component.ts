@@ -3,6 +3,7 @@ import { ClientService } from './../../services/client.service';
 import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import { FlashMessagesService } from 'angular2-flash-messages';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-details-client',
@@ -35,11 +36,28 @@ export class DetailsClientComponent implements OnInit {
   }
 
   deleteClient(id: string){
-    if(confirm('Are you sure to delete this client ?')){
-      this.ClientService.deleteClient(id);
-    this.flashMessage.show('Client Deleted !',{cssClass: 'alert alert-danger fade show', timeout: 4000});
-    this.router.navigate(['/']);
-    }
+    Swal.fire({
+      title: 'Are you sure to delete this client?',
+      text: "You won't be able to revert this!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, delete it!'
+    }).then((result) => {
+      if (result.value) {
+  
+        this.ClientService.deleteClient(id);
+        this.flashMessage.show('Client Deleted !',{cssClass: 'alert alert-danger fade show', timeout: 4000});
+        this.router.navigate(['/']);
+        
+        Swal.fire(
+          'Deleted!',
+          'The client has been deleted.',
+          'success'
+        )
+      }
+    })
     
   }
   
