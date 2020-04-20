@@ -1,1 +1,178 @@
-<p>edit-client works!</p>
+<div class="row m-3">
+    <div class="col-md-12">
+        <a routerLink="/client/{{client.id}}" style="color:white">
+            <button class="btn btn-success">
+                
+                    <i class="fa fa-arrow-circle-left dark">
+                        
+                    </i>
+                    Back To Client " {{client.firstName }} {{client.lastName}} "
+                
+            </button>
+        </a>    
+    </div>
+</div>
+
+<div class="row m-3">
+    <div class="col-md-12">
+        <a routerLink="/" style="color:white">
+            <button class="btn btn-success">
+                
+                    <i class="fa fa-arrow-circle-left dark">
+                        
+                    </i>
+                    Back To List Clients
+                
+            </button>
+        </a>    
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="card">
+            <h4 class="card-header"><i class="fa fa-user" aria-hidden="true"></i>Edit Client</h4>
+            <div class="card-body">
+               
+                <form #formClient="ngForm" (ngSubmit)="onSubmit()">
+
+                    <!--First Name-->
+                    <div class="form-group">
+                        <label for="">First Name</label>
+                        <input type="text"
+                         class="form-control"
+                         name="firstName"
+                         [(ngModel)]="client.firstName"
+                         #clientfirstName="ngModel"
+                         required
+                         minlength="3"
+                         pattern="[A-Za-z -]+"
+                         [ngClass]="{'is-invalid': clientfirstName.errors && clientfirstName.touched}">
+
+                         <div [hidden]="!clientfirstName.errors?.required" class="invalid-feedback">
+                             First Name is required!
+                         </div>
+
+                         <div [hidden]="!clientfirstName.errors?.pattern" class="invalid-feedback">
+                            Don't use the number in name!
+                        </div>
+
+                         <div [hidden]="!clientfirstName.errors?.minlength" class="invalid-feedback">
+                            Must be at least 3 characters!
+                        </div>
+                    </div>
+
+                    <!--Last name-->
+                    <div class="form-group">
+                        <label for="">Last Name</label>
+                        <input type="text"
+                         class="form-control"
+                         name="lastName"
+                         [(ngModel)]="client.lastName"
+                         #clientlastName="ngModel"
+                         required
+                         minlength="3"
+                         pattern="[A-Za-z -]+"
+                         [ngClass]="{'is-invalid': clientlastName.errors && clientlastName.touched}">
+
+                         <div [hidden]="!clientlastName.errors?.required" class="invalid-feedback">
+                             Last Name is required!
+                         </div>
+
+                         <div [hidden]="!clientlastName.errors?.pattern" class="invalid-feedback">
+                            Don't use the number in name!
+                        </div>
+
+                         <div [hidden]="!clientlastName.errors?.minlength" class="invalid-feedback">
+                            Must be at least 3 characters!
+                        </div>
+                    </div>
+
+
+                    <!--Email-->
+
+                    <div class="form-group">
+                        <label for="">Email</label>
+                        <input type="email"
+                         class="form-control"
+                         name="email"
+                         [(ngModel)]="client.email"
+                         #clientEmail="ngModel"
+                         required
+                         pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
+                         minlength="3"
+                         [ngClass]="{'is-invalid': clientEmail.errors && clientEmail.touched}">
+
+                         <div [hidden]="!clientEmail.errors?.required" class="invalid-feedback">
+                            Email is required!
+                         </div>
+
+                         <div [hidden]="!clientEmail.errors?.pattern" class="invalid-feedback">
+                            Respect Format Email!
+                         </div>
+
+                         <div [hidden]="!clientEmail.errors?.minlength" class="invalid-feedback">
+                            Must be at least 3 characters!
+                        </div>
+                    </div>
+
+                    <!--Phone-->
+
+                    <div class="form-group">
+                        <label for="">Phone</label>
+                        <input type="text"
+                         class="form-control"
+                         name="phone"
+                         [(ngModel)]="client.phone"
+                         #clientPhone="ngModel"
+                         required
+                         pattern="^(?:0|\(?\+212\)?\s?|00212\s?)[1-79](?:[\.\-\s]?\d\d){4}$"
+                         minlength="10"
+                         
+                         placeholder="XXX XXX XXXX"
+                         [ngClass]="{'is-invalid': clientPhone.errors && clientPhone.touched}">
+
+                         <div [hidden]="!clientPhone.errors?.required" class="invalid-feedback">
+                            Phone is required!
+                         </div>
+
+                      
+                          <div [hidden]="!clientPhone.errors?.minlength" class="invalid-feedback">
+                            You need some number!
+                        </div>
+                      
+
+                      <!--
+                          <div [hidden]="!clientPhone.errors?.maxlength" class="invalid-feedback">
+                            You must have 10 characters!
+                        </div>
+                      -->  
+
+                        <div [hidden]="!clientPhone.errors?.pattern" class="invalid-feedback">
+                            You must respect format phone!
+                        </div>
+                    </div>
+
+                    <!--Balance-->
+
+                    <div class="form-group">
+                        <label for="">Balance</label>
+                        <input type="number"
+                         class="form-control"
+                         name="balance"
+                         [(ngModel)]="client.balance"
+                         #clientBalance="ngModel"
+                         required
+                         [ngClass]="{'is-invalid': clientBalance.errors && clientBalance.touched}">
+
+                         <div [hidden]="!clientBalance.errors?.required" class="invalid-feedback">
+                            Balance is required!
+                         </div>  
+                    </div>
+
+                    <button class="btn btn-success btn-block" type="submit" [disabled]="!formClient.valid">Update</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
