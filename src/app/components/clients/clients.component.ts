@@ -17,6 +17,7 @@ export class ClientsComponent implements OnInit {
   total: number=0;
   id: string;
   client: Client;
+  searchClients: Client[];
 
   constructor(private ClientService: ClientService,
               private flashMessage: FlashMessagesService,
@@ -28,12 +29,20 @@ export class ClientsComponent implements OnInit {
     //this.id = this.route.snapshot.params['id'];
     this.authServiceClient.getAuth().subscribe(auth => {
       this.ClientService.getClients(auth.uid).subscribe(clients => {
-        this.clients = clients
+        this.searchClients = this.clients = clients
        this.total = this.getTotal();
     })
     
 })
 
+}
+
+search(query: string){
+  this.searchClients = (query) ? this.clients.filter(client => client.firstName.toLowerCase().includes(query.toLowerCase())
+   || client.lastName.toLowerCase().includes(query.toLowerCase())
+    || client.email.toLowerCase().includes(query.toLowerCase())
+     || client.phone.toString().includes(query.toString()) 
+     || client.balance.toString().includes(query.toString()) ): this.clients;
 }
 
 getTotal(){
@@ -76,5 +85,7 @@ deleteClient(id: string){
 
   
 }
+
+
 
 }
