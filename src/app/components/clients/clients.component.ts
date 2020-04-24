@@ -4,6 +4,7 @@ import { Client } from './../../models/client';
 import { ClientService } from './../../services/client.service';
 import { Component, OnInit } from '@angular/core';
 import Swal from 'sweetalert2';
+import { AuthClientService } from 'src/app/services/auth-client.service';
 
 @Component({
   selector: 'app-clients',
@@ -20,14 +21,17 @@ export class ClientsComponent implements OnInit {
   constructor(private ClientService: ClientService,
               private flashMessage: FlashMessagesService,
               private router: Router,
-              private route: ActivatedRoute,) { }
+              private route: ActivatedRoute,
+              private authServiceClient: AuthClientService) { }
 
   ngOnInit() {
     //this.id = this.route.snapshot.params['id'];
+    this.authServiceClient.getAuth().subscribe(auth => {
+      this.ClientService.getClients(auth.uid).subscribe(clients => {
+        this.clients = clients
+       this.total = this.getTotal();
+    })
     
-    this.ClientService.getClients().subscribe(clients => {
-      this.clients = clients
-     this.total = this.getTotal();
 })
 
 }
