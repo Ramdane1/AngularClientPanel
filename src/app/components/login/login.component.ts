@@ -17,7 +17,7 @@ export class LoginComponent implements OnInit {
               private route: Router) { }
 
   ngOnInit() {
-    this.authService.getAuth().subscribe(auth => {
+   this.authService.getAuth().subscribe(auth => {
       if(auth){
        return this.route.navigate(['/']);
       }
@@ -27,6 +27,24 @@ export class LoginComponent implements OnInit {
 
   onLogin(){
     this.authService.login(this.email, this.password)
+    .then(auth => {
+      if(auth){
+        this.flashMessage.show('You are logged succesfully',{
+          cssClass: "alert alert-success", timeout: 5000
+        })
+
+        this.route.navigate(['/']);
+      }
+    })
+    .catch(error => {
+      this.flashMessage.show(error.message,{
+        cssClass: "alert alert-danger", timeout: 10000
+      })
+    })
+  }
+
+  onLoginWithGoogle(){
+    this.authService.loginWithGoogle()
     .then(auth => {
       if(auth){
         this.flashMessage.show('You are logged succesfully',{
