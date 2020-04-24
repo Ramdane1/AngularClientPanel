@@ -17,6 +17,13 @@ export class AuthClientService {
     })
   }
 
+  register(email: string, password: string){
+    return new Promise((resolve, reject) => {
+      this.afAuth.auth.createUserWithEmailAndPassword(email,password)
+      .then((userData) => resolve(userData), (error) => reject(error))
+    })
+  }
+
   loginWithGoogle(){
     return new Promise((resolve, reject) => {
       this.afAuth.auth.signInWithPopup(new firebase.auth.GoogleAuthProvider())
@@ -31,4 +38,6 @@ export class AuthClientService {
   logOut(){
     this.afAuth.auth.signOut();
   }
+
+
 }
